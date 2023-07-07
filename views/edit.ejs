@@ -34,42 +34,42 @@
         </div>
       </div>
     </nav>
-    <section id="card-paket">
+    <section>
       <div class="container">
         <div class="row">
           <div class="col-md-10">
-            <h1>Daftar paket</h1>
-            <a href="/add" class="btn btn-primary my-2">Tambah Data</a>
+            <h1 class="text-center">Halaman Edit Paket</h1>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-12 d-flex flex-wrap">
-            <% if (data.length > 0) { %> <% data.forEach(data => { %>
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title"><%= data.judul %></h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary">
-                  Rp <%= data.harga.toLocaleString("id-ID",{styles: "currency",
-                  currency: "IDR",}) %>
-                </h6>
-                <a href="/edit/<%= data.id %>" class="btn btn-primary"
-                  >edit</a
-                >
-                <form action="/delete?_method=DELETE" method="post" class="d-inline">
-                  <input type="hidden" name="id" value="<%= data.id %>" />
-                  <button
-                    type="submit"
-                    onclick="return confirm('Paket ini akan dihapus')"
-                    class="btn btn-danger"
-                  >
-                    hapus
-                  </button>
-                </form>
+        <div class="row d-flex justify-content-center">
+          <div class="col-6">
+            <form action="/edit?_method=PUT" method="post">
+              <input type="hidden" name="id" value="<%= data.id %>">
+              <div class="mb-3">
+                <label for="nama" class="form-label">Judul Paket</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nama"
+                  aria-describedby="emailHelp"
+                  name="judul"
+                  value="<%= data.judul %>"
+                  required
+                />
               </div>
-            </div>
-            <% }) %> <% }else{ %>
-            <div class="alert alert-warning" role="alert">DATA KOSONG</div>
-            <% } %>
+              <div class="mb-3">
+                <label for="nomor" class="form-label">harga Paket</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="nomor"
+                  name="harga"
+                  value="<%= data.harga %>"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-primary" onclick="return confirm('data akan di ubah')">Submit</button>
+            </form>
           </div>
         </div>
       </div>
